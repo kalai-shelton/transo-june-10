@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-4 contactpart2">
                 <div class="site-contact-form">
-                    <form id="contact-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+                    <form id="contact-form" action="{{ .Site.Params.formspreeFormUrl }}" method="POST">
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" name="full-name" id="full-name"
