@@ -12,21 +12,32 @@ window.addEventListener("DOMContentLoaded", function() {
     button.style = "display: none ";
     status.innerHTML = "Thanks! Contact form is submitted successfully.";
  
+    var utm=parameters.get("utm_source");
+      var med=parameters.get("utm_medium");
+     
+      if (parameters.has("gclid")) {
+        var clickid= parameters.get("gclid");
+      }
+       else  if (parameters.has("li_fat_id")) {
+        var clickid= parameters.get("li_fat_id");
+      }
+      else  if (parameters.has("fbclid")) {
+        var clickid= parameters.get("fbclid");
+      }
+      else{
+        clickid = "null"
+      }
+
     document.getElementById('utmSrc').value=utm;
    document.getElementById('utmCamp').value=med;
    document.getElementById('clickId').value=clickid;
 
-   var utm=parameters.get("utm_source");
-      var med=parameters.get("utm_medium");
-      var clickid=parameters.get("gclid");
+   
    console.log(utm);
     console.log(med);
     console.log(clickid);
     
- 
-
-    
-  }
+ }
 
   function error() {
     status.innerHTML = "Oops! There was a problem.";
@@ -46,8 +57,9 @@ window.addEventListener("DOMContentLoaded", function() {
 function ajax(method, url, data, success, error) {
   var xhr = new XMLHttpRequest();
   xhr.open(method, url);
-   xhr.setRequestHeader("Accept", "application/json");
-   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function() {
     if (xhr.readyState !== XMLHttpRequest.DONE) return;
     if (xhr.status === 200) {
